@@ -5,28 +5,21 @@ function App() {
 
   // Wait until adaReady resolves before using Ada
   React.useEffect(() => {
-    window.adaReady.then(() => setAdaLoaded(true));
-  }, []);
-
-  // Trigger setMetaFields when the button is clicked
-  // Log any errors to the console
-  // Shouldn't expect to see any errors
-  const onClick = () => {
-    try {
+    window.adaReady.then(() => {
       const email = "ryan@example.com";
-      window.adaEmbed.setMetaFields({ email });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      try {
+        window.adaEmbed.setMetaFields({ email });
+      } catch (error) {
+        console.error(error);
+      }
+      setAdaLoaded(true)
+    });
+  }, []);
 
   return (
     <div className="App">
       <h1>Is Ada loaded?</h1>
       <h2>{adaLoaded ? "Yes" : "No"}</h2>
-      <button disabled={!adaLoaded} onClick={onClick}>
-        Trigger setMetaFields
-      </button>
     </div>
   );
 }
