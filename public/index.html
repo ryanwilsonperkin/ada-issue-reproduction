@@ -39,5 +39,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  
+    <!-- Ada config and installation -->
+    <script type="text/javascript">
+      window.adaSettings = {};
+      // Resolve a globally accessible promise when Ada is ready
+      // Allows us to do window.adaReady.then(...) in our code
+      window.adaReady = new Promise(resolve => {
+        window.adaSettings.adaReadyCallback = () => {
+          console.info("adaReadyCallback was invoked");
+          resolve();
+        };
+      });
+    </script>
+    <script
+      async
+      id="__ada"
+      data-handle="wave-sandbox"
+      src="https://static.ada.support/embed.js"
+    ></script>
   </body>
 </html>
